@@ -206,6 +206,9 @@
                                     <fontDescription key="titleFontDescription" name="Kailasa-Bold" family="Kailasa" pointSize="17"/>
                                     <color key="baseForegroundColor" systemColor="systemGray5Color"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="removeGoodsFromCart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jf7-Sc-O2l"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghU-yb-3vl">
                                 <rect key="frame" x="243" y="704" width="112" height="56"/>

@@ -25,6 +25,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var labelGoodsInCart: UILabel!
     
     var sumGoodsInCart: Double = 0
+    let okButton = UIAlertAction(title: "OK", style: .default, handler: .none)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +81,6 @@ class ViewController: UIViewController {
         } else {
            //MARK: ALERT. if goods is end on Shelf
             let alertWhenGoodsEndOnShelf = UIAlertController(title: "Внимание!", message: "Товар \"\(currentGoods.name)\" закончился! Надо заказать на складе", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "OK", style: .default, handler: .none)
             alertWhenGoodsEndOnShelf.addAction(okButton)
             self.present(alertWhenGoodsEndOnShelf, animated: true, completion: nil)
             print ("Товар на полке закончился! Надо заказать на складе")
@@ -126,7 +126,6 @@ class ViewController: UIViewController {
     
     if sender.state == .began {
         let alert = UIAlertController(title: "\(tappedButton.titleLabel!.text!)", message: "Цена товара: \(currentGoods.price) BYN \n Описание: \(currentGoods.description) \n На полках осталось: \(ShopManager.shared.inTheShopGoods[currentGoods]!)", preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "ok", style: .default, handler: .none)
         alert.addAction(okButton)
         self.present(alert, animated: true, completion: .none)
     }
@@ -153,6 +152,24 @@ class ViewController: UIViewController {
     }
     
     //MARK: remove Goods from Cart
+    
+    @IBAction func removeGoodsFromCart(_ sender: UIButton) {
+        if ShopManager.shared.inTheCart.isEmpty  {
+          let alert = UIAlertController(title: "Корзина пуста!", message: "",  preferredStyle: .alert)
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: .none)
+        }
+        
+        for (key, value) in ShopManager.shared.inTheCart {
+            if ShopManager.shared.inTheShopGoods[key] != nil {
+                ShopManager.shared.inTheShopGoods[key]! += ShopManager.shared.inTheCart[key]!
+            }
+        }
+        ShopManager.shared.inTheCart.removeAll()
+        goodsInCart.text! = "товар не выбран"
+        labelGoodsInCart.text = "0"
+    }
+    
     
     //MARK: sell a goods
     
