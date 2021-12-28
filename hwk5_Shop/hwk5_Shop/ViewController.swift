@@ -9,27 +9,17 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    //  @IBOutlet weak var goodsList: UILabel!
     @IBOutlet weak var buttonGoods1: UIButton!
     @IBOutlet weak var buttonGoods2: UIButton!
     @IBOutlet weak var buttonGoods3: UIButton!
     @IBOutlet weak var buttonGoods4: UIButton!
     @IBOutlet weak var buttonGoods5: UIButton!
     
-    
     @IBOutlet weak var labelGoods1: UILabel!
     @IBOutlet weak var labelGoods2: UILabel!
     @IBOutlet weak var labelGoods3: UILabel!
     @IBOutlet weak var labelGoods4: UILabel!
     @IBOutlet weak var labelGoods5: UILabel!
-    
-    
-    @IBOutlet weak var infoGoods1: UIButton!
-    @IBOutlet weak var infoGoods2: UIButton!
-    @IBOutlet weak var infoGoods3: UIButton!
-    @IBOutlet weak var infoGoods4: UIButton!
-    @IBOutlet weak var infoGoods5: UIButton!
-    
     
     @IBOutlet weak var goodsInCart: UILabel!
     @IBOutlet weak var labelGoodsInCart: UILabel!
@@ -87,9 +77,12 @@ class ViewController: UIViewController {
                 goodsInCart.text! += "\(key.name) \(value) \n"
             }
             
-        
         } else {
            //MARK: ALERT. if goods is end on Shelf
+            let alertWhenGoodsEndOnShelf = UIAlertController(title: "Внимание!", message: "Товар \"\(currentGoods.name)\" закончился! Надо заказать на складе", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "OK", style: .default, handler: .none)
+            alertWhenGoodsEndOnShelf.addAction(okButton)
+            self.present(alertWhenGoodsEndOnShelf, animated: true, completion: nil)
             print ("Товар на полке закончился! Надо заказать на складе")
             
         }
@@ -114,10 +107,60 @@ class ViewController: UIViewController {
     @IBAction func goods5ToCart(_ sender: UIButton) {
         addGoodsInCart(sender)
     }
-    
 
+    //MARK: display info about goods
     
+    func showGoodsInfo (_ sender : UILongPressGestureRecognizer) {
+        
+        let tappedButton: UIButton = sender.delegate as! UIButton
     
+    var currentGoods : Goods {
+        var returnGoods : Goods? = nil
+        for (key, _) in ShopManager.shared.inTheShopGoods {
+            if key.name == tappedButton.titleLabel!.text! {
+                returnGoods = key
+            }
+        }
+        return returnGoods!
+    }
+    
+    if sender.state == .began {
+        let alert = UIAlertController(title: "\(tappedButton.titleLabel!.text!)", message: "Цена товара: \(currentGoods.price) BYN \n Описание: \(currentGoods.description) \n На полках осталось: \(ShopManager.shared.inTheShopGoods[currentGoods]!)", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "ok", style: .default, handler: .none)
+        alert.addAction(okButton)
+        self.present(alert, animated: true, completion: .none)
+    }
+    }
+    
+    @IBAction func longTapButtonGoods1(_ sender: UILongPressGestureRecognizer) {
+        showGoodsInfo(sender)
+    }
+    
+    @IBAction func longTapButtonGoods2(_ sender: UILongPressGestureRecognizer) {
+        showGoodsInfo(sender)
+    }
+    
+    @IBAction func longTapButtonGoods3(_ sender: UILongPressGestureRecognizer) {
+        showGoodsInfo(sender)
+    }
+    
+    @IBAction func longTapButtonGoods4(_ sender: UILongPressGestureRecognizer) {
+        showGoodsInfo(sender)
+    }
+    
+    @IBAction func longTapButtonGoods5(_ sender: UILongPressGestureRecognizer) {
+        showGoodsInfo(sender)
+    }
+    
+    //MARK: remove Goods from Cart
+    
+    //MARK: sell a goods
+    
+    //MARK: ordergoods from the storehouse
+    
+    //MARK: show saless statistic
     
 }
+    
+
 
