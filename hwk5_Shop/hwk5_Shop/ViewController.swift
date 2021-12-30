@@ -50,7 +50,7 @@ class ViewController: UIViewController {
             arrayOfButtonsGoods[i]?.setTitle(key.name, for: .normal)
             arrayOfLabelsGoods[i]?.text = String(key.price)
             i += 1
-       }
+        }
     }
     
     //MARK: add goods from Shelf to Cart
@@ -67,12 +67,10 @@ class ViewController: UIViewController {
         }
         
         if ShopManager.shared.inTheShopGoods[currentGoods]! > 0 {
-            
             if ShopManager.shared.inTheCart[currentGoods] == nil {
                 ShopManager.shared.inTheCart[currentGoods] = 1
             } else {
                 ShopManager.shared.inTheCart[currentGoods]! += 1
-                
             }
             ShopManager.shared.inTheShopGoods[currentGoods]! -= 1
             sumGoodsInCart += currentGoods.price
@@ -81,14 +79,12 @@ class ViewController: UIViewController {
             for (key, value) in ShopManager.shared.inTheCart {
                 goodsInCart.text! += "\(key.name) \(value) \n"
             }
-            
         } else {
-           //MARK: ALERT. if goods is end on Shelf
+            //MARK: ALERT. if goods is end on Shelf
             let alertWhenGoodsEndOnShelf = UIAlertController(title: "Внимание!", message: "Товар \"\(currentGoods.name)\" закончился! Надо заказать на складе", preferredStyle: .alert)
             alertWhenGoodsEndOnShelf.addAction(okButton)
             self.present(alertWhenGoodsEndOnShelf, animated: true, completion: nil)
             print ("Товар на полке закончился! Надо заказать на складе")
-            
         }
     }
     
@@ -111,28 +107,28 @@ class ViewController: UIViewController {
     @IBAction func goods5ToCart(_ sender: UIButton) {
         addGoodsInCart(sender)
     }
-
+    
     //MARK: display info about goods
     
     func showGoodsInfo (_ sender : UILongPressGestureRecognizer) {
         
         let tappedButton: UIButton = sender.delegate as! UIButton
-    
-    var currentGoods : Goods {
-        var returnGoods : Goods? = nil
-        for (key, _) in ShopManager.shared.inTheShopGoods {
-            if key.name == tappedButton.titleLabel!.text! {
-                returnGoods = key
+        
+        var currentGoods : Goods {
+            var returnGoods : Goods? = nil
+            for (key, _) in ShopManager.shared.inTheShopGoods {
+                if key.name == tappedButton.titleLabel!.text! {
+                    returnGoods = key
+                }
             }
+            return returnGoods!
         }
-        return returnGoods!
-    }
-    
-    if sender.state == .began {
-        let alert = UIAlertController(title: "\(tappedButton.titleLabel!.text!)", message: "Цена товара: \(currentGoods.price) BYN \n Описание: \(currentGoods.description) \n На полках осталось: \(ShopManager.shared.inTheShopGoods[currentGoods]!)", preferredStyle: .alert)
-        alert.addAction(okButton)
-        self.present(alert, animated: true, completion: .none)
-    }
+        
+        if sender.state == .began {
+            let alert = UIAlertController(title: "\(tappedButton.titleLabel!.text!)", message: "Цена товара: \(currentGoods.price) BYN \n Описание: \(currentGoods.description) \n На полках осталось: \(ShopManager.shared.inTheShopGoods[currentGoods]!)", preferredStyle: .alert)
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: .none)
+        }
     }
     
     @IBAction func longTapButtonGoods1(_ sender: UILongPressGestureRecognizer) {
@@ -159,7 +155,7 @@ class ViewController: UIViewController {
     
     @IBAction func removeGoodsFromCart(_ sender: UIButton) {
         if ShopManager.shared.inTheCart.isEmpty  {
-          let alert = UIAlertController(title: "Корзина пуста!", message: "",  preferredStyle: .alert)
+            let alert = UIAlertController(title: "Корзина пуста!", message: "",  preferredStyle: .alert)
             alert.addAction(okButton)
             self.present(alert, animated: true, completion: .none)
         }
@@ -175,58 +171,38 @@ class ViewController: UIViewController {
         labelGoodsInCart.text = "0"
     }
     
-    
     //MARK: sell goods in Cart
-    var countOfSells: Int = 0
-    
     @IBAction func sellGoodsInCart(_ sender: UIButton) {
-       //если корзина пустая - алерт заполни корзину
+        //если корзина пустая - алерт заполни корзину
         // если в корзине есть товар - добавить товар с лэйбла в textview добавить продукты в словарь всего продано, увеличить счетчик заказа, вывести на экран, очисть корзину и очистить лэйбу
         if ShopManager.shared.inTheCart.isEmpty  {
-          let alert = UIAlertController(title: "Сначала добавьте товар в корзину!", message: "",  preferredStyle: .alert)
+            let alert = UIAlertController(title: "Сначала добавьте товар в корзину!", message: "",  preferredStyle: .alert)
             alert.addAction(okButton)
             self.present(alert, animated: true, completion: .none)
         } else {
-        countOfSells += 1
-        ShopManager.shared.income += sumGoodsInCart
-        print(ShopManager.shared.income)
-        
-        cashRegisterTextView.text += "Заказ №\(countOfSells) \n\n" + goodsInCart.text! + "ИТОГО: " + labelGoodsInCart.text! + " BYN\n" + "-------------------------\n"
-        cashRegisterTextView.scrollRangeToVisible(NSMakeRange(cashRegisterTextView.text.count-1, 1))
+            ShopManager.shared.sellGoods(sumGoodsInCart)
+            cashRegisterTextView.text += "Заказ №\(ShopManager.shared.countOfSells) \n\n" + goodsInCart.text! + "ИТОГО: " + labelGoodsInCart.text! + " BYN\n" + "-------------------------\n"
+            cashRegisterTextView.scrollRangeToVisible(NSMakeRange(cashRegisterTextView.text.count-1, 1))
             
-            
-        //add goods in sales statistic
-            for (key, _) in ShopManager.shared.inTheCart {
-                if ShopManager.shared.allSoldGoods[key] == nil {
-                    ShopManager.shared.allSoldGoods[key] = ShopManager.shared.inTheCart[key]!
-                } else {
-                    ShopManager.shared.allSoldGoods[key]! += ShopManager.shared.inTheCart[key]!
-                }
-            }
-        ShopManager.shared.inTheCart.removeAll()
-        goodsInCart.text! = "товар не выбран"
-       // ShopManager.shared.income += sumGoodsInCart
-        sumGoodsInCart = 0
-        labelGoodsInCart.text = "0"
+            //add goods in sales statistic
+            ShopManager.shared.addGoodsIntoStatistic()
+            goodsInCart.text! = "товар не выбран"
+            sumGoodsInCart = 0
+            labelGoodsInCart.text = "0"
         }
     }
-    
     
     //MARK: ordergoods from the storehouse
     
     
     //MARK: show saless statistic
-    
-    
     @IBAction func showIncomeInfo(_ sender: UIButton) {
-        
-            var countSoldGoods = ""
+        var countSoldGoods = ""
         for (key, value) in ShopManager.shared.allSoldGoods {
-                   countSoldGoods += "\(key.name) \(value) \n"
-                }
-            
+            countSoldGoods += "\(key.name) \(value) \n"
+        }
         
-        cashRegisterTextView.text += "Заказов оформлено:\(countOfSells) \n" +   countSoldGoods  + "Общий доход: \(ShopManager.shared.income)" + " BYN\n" + "-------------------------\n"
+        cashRegisterTextView.text += "Заказов оформлено:\(ShopManager.shared.countOfSells) \n" +  countSoldGoods  + "Общий доход: \(ShopManager.shared.income)" + " BYN\n" + "-------------------------\n"
         cashRegisterTextView.scrollRangeToVisible(NSMakeRange(cashRegisterTextView.text.count-1, 1))
     }
     
