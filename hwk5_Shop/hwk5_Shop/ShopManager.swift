@@ -11,9 +11,8 @@ class ShopManager {
     static let shared = ShopManager()
     
     var inTheShopGoods: [Goods : Int] = [:]
-    var inTheCart: [Goods : Int] = [:]
-    var income: Double = 0
-    
-
-    
+   lazy var inTheCart: [Goods : Int] = [:]
+   lazy var allSoldGoods: [Goods : Int] = [:]
+   lazy var income: Double = 0
+       
 }

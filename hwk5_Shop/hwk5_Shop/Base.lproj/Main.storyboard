@@ -229,6 +229,9 @@
                                     <fontDescription key="titleFontDescription" name="Kailasa-Bold" family="Kailasa" pointSize="20"/>
                                     <color key="baseForegroundColor" systemColor="systemGray5Color"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="sellGoodsInCart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KJU-cQ-IqI"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yiP-yu-qwR">
                                 <rect key="frame" x="243" y="782" width="112" height="56"/>
@@ -239,6 +242,9 @@
                                     <fontDescription key="titleFontDescription" name="Kailasa-Bold" family="Kailasa" pointSize="17"/>
                                     <color key="baseForegroundColor" systemColor="systemGray5Color"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="showIncomeInfo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MDp-02-bQ4"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -295,6 +301,7 @@
                         <outlet property="buttonGoods3" destination="ZZD-Jy-WaU" id="R9R-bO-WBl"/>
                         <outlet property="buttonGoods4" destination="J3T-HA-HnM" id="xx0-jF-a6Y"/>
                         <outlet property="buttonGoods5" destination="5TU-jc-hco" id="Nlh-Rm-3Ea"/>
+                        <outlet property="cashRegisterTextView" destination="pX6-nQ-VD1" id="zGn-9n-TZL"/>
                         <outlet property="goodsInCart" destination="EAN-nv-WKf" id="kSA-8q-dgz"/>
                         <outlet property="labelGoods1" destination="rSu-Jc-X0a" id="A7T-A0-yq2"/>
                         <outlet property="labelGoods2" destination="uxL-Ba-7ze" id="ZF3-PH-nZt"/>
