@@ -15,6 +15,7 @@
 		672F95F1277897BF003E0C8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 672F95EF277897BF003E0C8B /* LaunchScreen.storyboard */; };
 		672F95F927789B89003E0C8B /* Goods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672F95F827789B89003E0C8B /* Goods.swift */; };
 		672F95FB27789CFC003E0C8B /* ShopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672F95FA27789CFC003E0C8B /* ShopManager.swift */; };
+		673BA697277DB3A3004DC42B /* StoreHouseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673BA696277DB3A3004DC42B /* StoreHouseViewController.swift */; };
 		6780E0D4277A2CFD005B212A /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6780E0D3277A2CFD005B212A /* Alerts.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		672F95F2277897BF003E0C8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		672F95F827789B89003E0C8B /* Goods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goods.swift; sourceTree = "<group>"; };
 		672F95FA27789CFC003E0C8B /* ShopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopManager.swift; sourceTree = "<group>"; };
+		673BA696277DB3A3004DC42B /* StoreHouseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreHouseViewController.swift; sourceTree = "<group>"; };
 		6780E0D3277A2CFD005B212A /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +69,7 @@
 				6780E0D3277A2CFD005B212A /* Alerts.swift */,
 				672F95F827789B89003E0C8B /* Goods.swift */,
 				672F95FA27789CFC003E0C8B /* ShopManager.swift */,
+				673BA696277DB3A3004DC42B /* StoreHouseViewController.swift */,
 				672F95E8277897BD003E0C8B /* ViewController.swift */,
 				672F95EA277897BD003E0C8B /* Main.storyboard */,
 				672F95ED277897BF003E0C8B /* Assets.xcassets */,
@@ -147,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				673BA697277DB3A3004DC42B /* StoreHouseViewController.swift in Sources */,
 				672F95E9277897BD003E0C8B /* ViewController.swift in Sources */,
 				672F95E5277897BD003E0C8B /* AppDelegate.swift in Sources */,
 				672F95F927789B89003E0C8B /* Goods.swift in Sources */,

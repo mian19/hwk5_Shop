@@ -23,10 +23,11 @@ class ShopManager {
     static let shared = ShopManager()
     
     var inTheShopGoods: [Goods : Int] = [:]
-    lazy var inTheCart: [Goods : Int] = [:]
-    lazy var allSoldGoods: [Goods : Int] = [:]
-    lazy var income: Double = 0
-    lazy var countOfSells: Int = 0
+    var inTheCart: [Goods : Int] = [:]
+     var inTheStoreHouse: [Goods : Int] = [:]
+     var allSoldGoods: [Goods : Int] = [:]
+     var income: Double = 0
+     var countOfSells: Int = 0
     //
     func sellGoods(_ sumGoodsInCart: Double) {
         countOfSells += 1

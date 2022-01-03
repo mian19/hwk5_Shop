@@ -173,8 +173,7 @@ class ViewController: UIViewController {
     
     //MARK: sell goods in Cart
     @IBAction func sellGoodsInCart(_ sender: UIButton) {
-        //если корзина пустая - алерт заполни корзину
-        // если в корзине есть товар - добавить товар с лэйбла в textview добавить продукты в словарь всего продано, увеличить счетчик заказа, вывести на экран, очисть корзину и очистить лэйбу
+        
         if ShopManager.shared.inTheCart.isEmpty  {
             let alert = UIAlertController(title: "Сначала добавьте товар в корзину!", message: "",  preferredStyle: .alert)
             alert.addAction(okButton)
@@ -192,9 +191,6 @@ class ViewController: UIViewController {
         }
     }
     
-    //MARK: ordergoods from the storehouse
-    
-    
     //MARK: show saless statistic
     @IBAction func showIncomeInfo(_ sender: UIButton) {
         var countSoldGoods = ""
@@ -206,6 +202,13 @@ class ViewController: UIViewController {
         cashRegisterTextView.scrollRangeToVisible(NSMakeRange(cashRegisterTextView.text.count-1, 1))
     }
     
+    //MARK: go to Storehouse
+    
+     
+    
+    @IBAction func goToStorehouse(_ sender: UIButton) {
+    
+    }
     
     
 }
