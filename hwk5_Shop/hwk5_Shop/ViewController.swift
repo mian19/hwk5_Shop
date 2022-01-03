@@ -55,7 +55,6 @@ class ViewController: UIViewController {
     
     //MARK: add goods from Shelf to Cart
     func addGoodsInCart (_ sender: UIButton) {
-        print( sender.titleLabel!.text!)
         var currentGoods : Goods {
             var returnGoods : Goods? = nil
             for (key, _) in ShopManager.shared.inTheShopGoods {
@@ -84,7 +83,6 @@ class ViewController: UIViewController {
             let alertWhenGoodsEndOnShelf = UIAlertController(title: "Внимание!", message: "Товар \"\(currentGoods.name)\" закончился! Надо заказать на складе", preferredStyle: .alert)
             alertWhenGoodsEndOnShelf.addAction(okButton)
             self.present(alertWhenGoodsEndOnShelf, animated: true, completion: nil)
-            print ("Товар на полке закончился! Надо заказать на складе")
         }
     }
     

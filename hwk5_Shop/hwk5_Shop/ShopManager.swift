@@ -43,8 +43,8 @@ class ShopManager {
         }
     }
     }
-    //statistic of sold goods
     
+    //statistic of sold goods
     func addGoodsIntoStatistic() {
         for (key, _) in ShopManager.shared.inTheCart {
             if ShopManager.shared.allSoldGoods[key] == nil {
