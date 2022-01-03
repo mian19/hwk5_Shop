@@ -28,15 +28,21 @@ class ShopManager {
      var allSoldGoods: [Goods : Int] = [:]
      var income: Double = 0
      var countOfSells: Int = 0
-    //
+   
+    //sell goods
     func sellGoods(_ sumGoodsInCart: Double) {
         countOfSells += 1
         ShopManager.shared.income += sumGoodsInCart
     }
     
     //закупить товар
-    
-    
+    func orderGoodsFromStoreHouse() {
+    for (key, _) in ShopManager.shared.inTheShopGoods{
+        if ShopManager.shared.inTheStoreHouse[key] != nil {
+            ShopManager.shared.inTheShopGoods[key]! += ShopManager.shared.inTheStoreHouse[key]!
+        }
+    }
+    }
     //statistic of sold goods
     
     func addGoodsIntoStatistic() {

@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         let cola = Goods(name: "Кока-Кола", price: 2.1, description: "Классическая кола")
         let bread = Goods(name: "Хлеб", price: 1, description: "Свежий черный хлеб")
         let meat = Goods(name: "Стейк", price: 8.1, description: "Свиная вырезка")
-        ShopManager.shared.inTheShopGoods = [milk: 5, salt: 4, cola: 3, bread: 4, meat: 39]
+        ShopManager.shared.inTheShopGoods = [milk: 5, salt: 4, cola: 3, bread: 4, meat: 4]
         
         let arrayOfButtonsGoods = [buttonGoods1, buttonGoods2, buttonGoods3, buttonGoods4, buttonGoods5]
         let arrayOfLabelsGoods = [labelGoods1, labelGoods2, labelGoods3, labelGoods4, labelGoods5]
@@ -198,20 +198,26 @@ class ViewController: UIViewController {
             countSoldGoods += "\(key.name) \(value) \n"
         }
         
-        cashRegisterTextView.text += "Заказов оформлено:\(ShopManager.shared.countOfSells) \n" +  countSoldGoods  + "Общий доход: \(ShopManager.shared.income)" + " BYN\n" + "-------------------------\n"
+        cashRegisterTextView.text += "Заказов оформлено:\(ShopManager.shared.countOfSells) \n" +  countSoldGoods  + "Общий доход: \(Double(round(ShopManager.shared.income*100)/100))" + " BYN\n" + "-------------------------\n"
         cashRegisterTextView.scrollRangeToVisible(NSMakeRange(cashRegisterTextView.text.count-1, 1))
     }
     
     //MARK: go to Storehouse
     
-     
+    lazy var storeHouseVC: StoreHouseViewController = getStoreHouseVC()
+    
+    private func getStoreHouseVC() -> StoreHouseViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "StoreHouseViewController")
+        return viewController as! StoreHouseViewController
+    }
     
     @IBAction func goToStorehouse(_ sender: UIButton) {
-    
+        self.present(storeHouseVC, animated: true, completion: nil)
     }
     
     
 }
-    
+
 
 

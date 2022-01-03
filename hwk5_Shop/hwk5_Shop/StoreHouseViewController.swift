@@ -39,8 +39,8 @@ class StoreHouseViewController: UIViewController {
     
     func steppers() -> [UIStepper] {
         [stepper1, stepper2, stepper3, stepper4, stepper5]    }
-  
-  
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -97,16 +97,31 @@ class StoreHouseViewController: UIViewController {
                 ShopManager.shared.inTheStoreHouse[key] = Int(arrayOfLabelsGoodsCount[i].text!)!
                 break
             }
-            
-            arrayOfLabelsGoodsCount[i].text = "0"
             i += 1
         }
         
-        for (key, _) in ShopManager.shared.inTheShopGoods{
-            ShopManager.shared.inTheShopGoods[key]! += ShopManager.shared.inTheStoreHouse[key]!
+        ShopManager.shared.orderGoodsFromStoreHouse()
+        
+        ShopManager.shared.inTheStoreHouse.keys.forEach {ShopManager.shared.inTheStoreHouse[$0] = 0}
+        
+        let steppers = steppers()
+        
+        for   elem in   arrayOfLabelsGoodsCount {
+            elem.text = "0"
+        }
+        for stepper in steppers {
+            stepper.value = 0
         }
         
-        ShopManager.shared.inTheStoreHouse.removeAll()
+        let alert = UIAlertController(title: "Товар отправлен в магазин!", message: nil, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "ok", style: .default, handler: nil)
+        let toShopButton = UIAlertAction(title: "В магазин", style: .destructive) {_ in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(okButton)
+        alert.addAction(toShopButton)
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     //MARK: go to main page
@@ -115,5 +130,5 @@ class StoreHouseViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-
+    
 }
